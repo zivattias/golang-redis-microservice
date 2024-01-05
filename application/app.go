@@ -22,7 +22,7 @@ func New() *App {
 	return app
 }
 
-func (a *App) connectToRedis(ctx context.Context) error {
+func (a *App) connectToDb(ctx context.Context) error {
 	if err := a.db.Ping(ctx).Err(); err != nil {
 		return fmt.Errorf("failed to connect to redis: %w", err)
 	}
@@ -42,7 +42,7 @@ func (a *App) startServer() error {
 }
 
 func (a *App) Start(ctx context.Context) error {
-	if err := a.connectToRedis(ctx); err != nil {
+	if err := a.connectToDb(ctx); err != nil {
 		return err
 	}
 
