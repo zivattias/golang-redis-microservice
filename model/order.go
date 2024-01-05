@@ -6,6 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
+// Order models
+
 type Order struct {
 	OrderID     uint64     `json:"orderID"`
 	CustomerID  uuid.UUID  `json:"customerID"`
@@ -19,4 +21,16 @@ type LineItem struct {
 	ItemID   uuid.UUID `json:"itemID"`
 	Quantity uint      `json:"quantity"`
 	Price    uint      `json:"price"`
+}
+
+// Pagination models
+
+type FindAllPage struct {
+	Size   uint64 `json:"size,omitempty"`
+	Offset uint64 `json:"offset,omitempty"`
+}
+
+type FindAllResult struct {
+	Orders []Order `json:"orders,omitempty"`
+	Cursor uint64  `json:"cursor,omitempty"`
 }
